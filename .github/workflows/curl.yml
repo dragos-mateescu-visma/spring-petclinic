@@ -37,6 +37,8 @@ jobs:
       - name: Compose Authorization Header
         env:
           AUTHORIZATION_HEADER: "Basic ${{secrets.AUTHENTICATION_TOKEN}}"
+        run: |
+          echo "$AUTHORIZATION_HEADER"
 
 
       # Runs a set of commands using the runners shell
