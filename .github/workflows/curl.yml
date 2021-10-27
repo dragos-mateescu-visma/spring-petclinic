@@ -44,4 +44,4 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-         curl --cert ${HOME}/jirainternaltools.crt --key ${HOME}/jirainternaltools.key -X GET -H "Authorization: $AUTHORIZATION_HEADER" https://jira.internaltools.visma.com/rest/api/2/issue/ODP-31236
+         curl --cert ${HOME}/jirainternaltools.crt --key ${HOME}/jirainternaltools.key -X GET -H "Authorization: "${AUTHORIZATION_HEADER} https://jira.internaltools.visma.com/rest/api/2/issue/ODP-31236
