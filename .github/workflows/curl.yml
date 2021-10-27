@@ -22,11 +22,19 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
+      - name: Write crt file
+        env:
+          CRT: ${{ secrets.JIRA_INTERNALTOOLS_CRT }}
+        run: |
+          echo "$CRT" > ${HOME}/jirainternaltools.crt
+          
+      - name: Write key file
+        env:
+          CRT: ${{ secrets.JIRA_INTERNALTOOLS_KEY }}
+        run: |
+          echo "$KEY" > ${HOME}/jirainternaltools.key
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-         curl --cert "${{secrets.JIRA_INTERNALTOOLS_CRT}}" --key "${{secrets.JIRA_INTERNALTOOLS_KEY}}" -i https://jira.internaltools.visma.com 
+         curl --cert ${HOME}/jirainternaltools.crt --key ${HOME}/jirainternaltools.key -i https://jira.internaltools.visma.com 
